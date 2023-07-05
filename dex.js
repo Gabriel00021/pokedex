@@ -2,7 +2,7 @@ const getpokemonurl = id=> `https://pokeapi.co/api/v2/pokemon/${id}`
 
 const fetchpokemon = ()=>{
     const pokemonpromises = [];
-    for (let i = 1; i <= 150; i++) {
+    for (let i = 1; i <= 1000; i++) {
         pokemonpromises.push(fetch(getpokemonurl(i)).then(Response=>Response.json()))
         
     }
@@ -13,17 +13,18 @@ const fetchpokemon = ()=>{
                 acumulador +=`
                 <div class="pokemon ${types[0]}">
                 <div class="espaco">
-                <img class="imagem" alt="${pokemon.name}" src="https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${pokemon.id}.svg">
+                <img class="imagem" alt="${pokemon.name}" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg">
                 </div>
                 <p class="nome">${pokemon.id} | ${pokemon.name}</p> 
                 <p class="tipos">${pokemon.types.map(typeInfo=>typeInfo.type.name).join(' | ')}</p>
                 </div>
                 `
-                return accumulator;
+                return acumulador;
             },'');
 
             const ul = document.querySelector('[data-js="pokedex"]');
-            ul.innerHTML = listPokemons;
+            ul.innerHTML = listpokemons;
+            console.log()
             });
     };
 
